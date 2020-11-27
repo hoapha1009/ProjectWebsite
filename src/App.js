@@ -6,7 +6,6 @@ import NotFound from './components/NotFound';
 import HomePage from './components/pages/HomePage';
 import Services from './components/pages/Services';
 import Product from './components/pages/Product';
-import SignUp from './features/SignUp';
 
 function App() {
     return (
