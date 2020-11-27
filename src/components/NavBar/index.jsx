@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { IconContext } from 'react-icons/lib';
 import { MdFingerprint } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Button from '../Button';
-import { IconContext } from 'react-icons/lib';
 import './styles.scss';
 
 NavBar.propTypes = {};
