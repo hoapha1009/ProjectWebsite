@@ -24,7 +24,9 @@ function Button({
     const checkButtonColor = COLORS.includes(buttonColor) ? buttonColor : null;
     return (
         <button
-            className={`brn ${checkButtonStyle} ${checkButtonSize} ${checkButtonColor} onClick={onClick} type={type} `}
+            className={`btn ${checkButtonStyle} ${checkButtonSize} ${checkButtonColor}`}
+            onClick={onClick}
+            type={type}
         >
             {children}
         </button>
