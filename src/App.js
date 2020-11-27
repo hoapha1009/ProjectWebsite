@@ -4,6 +4,9 @@ import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import NotFound from './components/NotFound';
 import HomePage from './components/pages/HomePage';
+import Services from './components/pages/Services';
+import Product from './components/pages/Product';
+import SignUp from './features/SignUp';
 
 function App() {
     return (
@@ -11,6 +14,9 @@ function App() {
             <NavBar />
             <Switch>
                 <Route path="/" exact component={HomePage} />
+                <Route path="/services" component={Services} />
+                <Route path="/products" component={Product} />
+                <Route path="/sign-up" component={SignUp} />
 
                 <Route component={NotFound} />
             </Switch>
