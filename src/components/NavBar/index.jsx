@@ -1,14 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './styles.scss';
-import { MdFingerprint } from 'react-icons/md';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import React, { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
+import { MdFingerprint } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import Register from '../../features/Auth/Register';
 import Button from '../Button';
+import './styles.scss';
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpenDialog = () => {
+        setOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpen(false);
+    };
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -73,27 +86,44 @@ function Navbar() {
                             </li>
                             <li className="nav-btn">
                                 {button ? (
-                                    <Link to="/sign-up" className="btn-link">
-                                        <Button buttonStyle="btn--outline">
-                                            SIGN UP
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        className="btn-link"
+                                        buttonStyle="btn--outline"
+                                        onClick={handleClickOpenDialog}
+                                    >
+                                        SIGN UP
+                                    </Button>
                                 ) : (
-                                    <Link to="/sign-up" className="btn-link">
-                                        <Button
-                                            buttonStyle="btn--outline"
-                                            buttonSize="btn--mobile"
-                                            onClick={closeMobileMenu}
-                                        >
-                                            SIGN UP
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        buttonStyle="btn--outline"
+                                        buttonSize="btn--mobile"
+                                        onClick={handleClickOpenDialog}
+                                        className="btn-link"
+                                    >
+                                        SIGN UP
+                                    </Button>
                                 )}
                             </li>
                         </ul>
                     </div>
                 </nav>
             </IconContext.Provider>
+            <Dialog
+                disableEscapeKeyDown
+                disableBackdropClick
+                open={open}
+                onClose={handleCloseDialog}
+                aria-labelledby="form-dialog-title"
+            >
+                <DialogContent>
+                    <Register onCloseDiaLog={handleCloseDialog} />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog} color="primary">
+                        Cancel
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }
