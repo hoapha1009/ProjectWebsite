@@ -1,6 +1,8 @@
+import { IconButton, makeStyles } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import { Close } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
@@ -9,6 +11,14 @@ import { Link } from 'react-router-dom';
 import Register from '../../features/Auth/Register';
 import Button from '../Button';
 import './styles.scss';
+
+const useStyle = makeStyles((theme) => ({
+    closeButton: {
+        position: 'absolute',
+        top: theme.spacing(1),
+        right: theme.spacing(1),
+    },
+}));
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -40,6 +50,7 @@ function Navbar() {
         return window.removeEventListener('resize', showButton);
     }, []);
 
+    const classes = useStyle();
     return (
         <>
             <IconContext.Provider value={{ color: '#fff' }}>
@@ -119,9 +130,12 @@ function Navbar() {
                     <Register onCloseDiaLog={handleCloseDialog} />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDialog} color="primary">
-                        Cancel
-                    </Button>
+                    <IconButton
+                        onClick={handleCloseDialog}
+                        className={classes.closeButton}
+                    >
+                        <Close />
+                    </IconButton>
                 </DialogActions>
             </Dialog>
         </>
