@@ -3,6 +3,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
+import Login from 'features/Auth/Login';
 import React, { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
@@ -127,7 +128,8 @@ function Navbar() {
                 aria-labelledby="form-dialog-title"
             >
                 <DialogContent>
-                    <Register onCloseDiaLog={handleCloseDialog} />
+                    {/* <Register onCloseDiaLog={handleCloseDialog} /> */}
+                    <Login onCloseDiaLog={handleCloseDialog} />
                 </DialogContent>
                 <DialogActions>
                     <IconButton

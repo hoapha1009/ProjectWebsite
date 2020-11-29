@@ -14,7 +14,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-RegisterForm.propTypes = {
+LoginForm.propTypes = {
     onSubmit: PropTypes.func,
 };
 
@@ -48,41 +48,15 @@ const useStyle = makeStyles((theme) => ({
     },
 }));
 
-function RegisterForm({ onSubmit }) {
-    const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+function LoginForm({ onSubmit }) {
     const schema = yup.object().shape({
-        fullName: yup
-            .string()
-            .required('Enter your full name!')
-            .test(
-                'Should has at least 2 words',
-                'Enter at least 2 words!',
-                (value) => {
-                    return value.split(' ').length >= 2;
-                }
-            ),
-        email: yup
-            .string()
-            .required('Enter your email!')
-            .email('Enter a valid email!'),
-        password: yup
-            .string()
-            .required('Enter your password!')
-            .matches(
-                regex,
-                'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character!'
-            ),
-        retypePassword: yup
-            .string()
-            .required('Confirm password!')
-            .oneOf([yup.ref('password')], 'Passwords dont match!'),
+        identifier: yup.string().required('Enter your username!'),
+        password: yup.string().required('Enter your password!'),
     });
     const form = useForm({
         defaultValues: {
-            fullName: '',
-            email: '',
+            identifier: '',
             password: '',
-            retypePassword: '',
         },
         resolver: yupResolver(schema),
     });
@@ -100,17 +74,11 @@ function RegisterForm({ onSubmit }) {
                 <LockIcon />
             </Avatar>
             <Typography component="h1" variant="h3" className={classes.title}>
-                Sign up
+                Log in
             </Typography>
             <form onSubmit={form.handleSubmit(handleFormSubmit)}>
-                <InputField name="fullName" label="Full name: " form={form} />
-                <InputField name="email" label="Email: " form={form} />
+                <InputField name="identifier" label="Email: " form={form} />
                 <PasswordField name="password" label="Password: " form={form} />
-                <PasswordField
-                    name="retypePassword"
-                    label="Confirm Password: "
-                    form={form}
-                />
                 <Button
                     disabled={isSubmitting}
                     type="submit"
@@ -120,11 +88,11 @@ function RegisterForm({ onSubmit }) {
                     color="primary"
                     size="large"
                 >
-                    Create an account
+                    Log in
                 </Button>
             </form>
         </div>
     );
 }
 
-export default RegisterForm;
+export default LoginForm;
