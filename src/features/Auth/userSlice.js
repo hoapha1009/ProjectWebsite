@@ -28,7 +28,14 @@ const userSlice = createSlice({
         current: JSON.parse(localStorage.getItem(StorageKeys.USER)) || {},
         settings: {},
     },
-    reducers: {},
+    reducers: {
+        logout(state) {
+            localStorage.removeItem(StorageKeys.TOKEN);
+            localStorage.removeItem(StorageKeys.USER);
+
+            state.current = {};
+        },
+    },
     extraReducers: {
         [register.fulfilled]: (state, action) => {
             state.current = action.payload;
@@ -39,5 +46,6 @@ const userSlice = createSlice({
     },
 });
 
-const { reducer } = userSlice;
+const { reducer, actions } = userSlice;
+export const { logout } = actions;
 export default reducer;
