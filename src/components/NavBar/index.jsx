@@ -23,9 +23,9 @@ const useStyle = makeStyles((theme) => ({
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
-    const handleClickOpenDialog = () => {
+    const handleClickOpen = () => {
         setOpen(true);
     };
 
@@ -100,7 +100,7 @@ function Navbar() {
                                     <Button
                                         className="btn-link"
                                         buttonStyle="btn--outline"
-                                        onClick={handleClickOpenDialog}
+                                        onClick={handleClickOpen}
                                     >
                                         SIGN UP
                                     </Button>
@@ -108,7 +108,7 @@ function Navbar() {
                                     <Button
                                         buttonStyle="btn--outline"
                                         buttonSize="btn--mobile"
-                                        onClick={handleClickOpenDialog}
+                                        onClick={handleClickOpen}
                                         className="btn-link"
                                     >
                                         SIGN UP

@@ -83,9 +83,9 @@ function RegisterForm({ onSubmit }) {
     const { isSubmitting } = form.formState;
     const classes = useStyle();
 
-    const handleFormSubmit = (values) => {
+    const handleFormSubmit = async (values) => {
         if (!onSubmit) return;
-        onSubmit(values);
+        await onSubmit(values);
     };
     return (
         <div className={classes.root}>

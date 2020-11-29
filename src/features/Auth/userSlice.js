@@ -21,7 +21,7 @@ const userSlice = createSlice({
     reducers: {},
     extraReducers: {
         [register.fulfilled]: (state, action) => {
-            return (state.current = action.payload);
+            state.current = action.payload;
         },
     },
 });
